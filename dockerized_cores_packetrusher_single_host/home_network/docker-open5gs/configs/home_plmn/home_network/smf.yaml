@@ -1,0 +1,41 @@
+logger:
+  file:
+    path: /var/log/open5gs/smf.log
+  level: debug
+global:
+#home smf is not used for roaming when LBO roaming is set.
+smf:
+  sbi:
+    server:
+      - address: smf.5gc.mnc001.mcc001.3gppnetwork.org
+        port: 80
+    client:
+      nrf:
+        - uri: http://nrf.5gc.mnc001.mcc001.3gppnetwork.org:80
+  pfcp:
+    server:
+      - address: smf.5gc.mnc001.mcc001.3gppnetwork.org
+    client:
+      upf:
+        - address: upf.5gc.mnc001.mcc001.3gppnetwork.org
+  gtpu:
+    server:
+      - address: smf.5gc.mnc001.mcc001.3gppnetwork.org
+  metrics:
+    server:
+      - address: smf.5gc.mnc001.mcc001.3gppnetwork.org
+        port: 9090
+  session:
+    - subnet: 10.45.0.0/16
+      gateway: 10.45.0.1
+  dns:
+    - 8.8.8.8
+    - 8.8.4.4
+  mtu: 1400
+
+  dnn:
+    internet:
+      dev: ogstun
+      dns:
+        ipv4: 8.8.8.8
+      mtu: 1400

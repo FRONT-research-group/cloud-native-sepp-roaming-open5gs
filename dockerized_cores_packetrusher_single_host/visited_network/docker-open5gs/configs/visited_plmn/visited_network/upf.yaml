@@ -1,0 +1,24 @@
+logger:
+  file:
+    path: /var/log/open5gs/upf.log
+  level: debug
+
+global:
+#home upf is not used when roaming with LBO feature.
+upf:
+  pfcp:
+    server:
+      - address: upf.5gc.mnc070.mcc999.3gppnetwork.org
+    client:
+  gtpu:
+    server:
+      - address: upf.5gc.mnc070.mcc999.3gppnetwork.org
+#        advertise: 10.220.2.81
+  metrics:
+    server:
+      - address: upf.5gc.mnc070.mcc999.3gppnetwork.org
+        port: 9090
+  session:
+    - subnet: 10.45.0.0/16
+      gateway: 10.45.0.1
+      dnn: internet

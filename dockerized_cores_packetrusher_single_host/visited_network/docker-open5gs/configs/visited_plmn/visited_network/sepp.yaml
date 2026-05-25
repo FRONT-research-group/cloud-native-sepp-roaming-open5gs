@@ -1,0 +1,23 @@
+logger:
+  file:
+    path: /var/log/open5gs/sepp.log
+  level: debug
+global:
+
+sepp:
+  sbi:
+    server:
+      - address: sepp.5gc.mnc070.mcc999.3gppnetwork.org
+        port: 80
+    client:
+      nrf:
+        - uri: http://nrf.5gc.mnc070.mcc999.3gppnetwork.org:80
+  n32:
+    server:
+      - sender: sepp-n32.5gc.mnc070.mcc999.3gppnetwork.org
+        address: sepp-n32.5gc.mnc070.mcc999.3gppnetwork.org
+        port: 80
+    client:
+      sepp:
+        - receiver: sepp-n32.5gc.mnc001.mcc001.3gppnetwork.org
+          uri: http://sepp-n32.5gc.mnc001.mcc001.3gppnetwork.org:80

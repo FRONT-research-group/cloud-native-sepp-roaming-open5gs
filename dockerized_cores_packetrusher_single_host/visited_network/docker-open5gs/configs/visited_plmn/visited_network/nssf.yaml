@@ -1,0 +1,27 @@
+logger:
+  file:
+    path: /var/log/open5gs/nssf.log
+  level: debug
+global:
+#home nssf not used in roaming LBO scenario.
+nssf:
+  sbi:
+    server:
+      - address: nssf.5gc.mnc070.mcc999.3gppnetwork.org
+        port: 80
+    client:
+      nrf:
+        - uri: http://nrf.5gc.mnc070.mcc999.3gppnetwork.org:80
+      nsi:
+        - uri: http://nrf.5gc.mnc070.mcc999.3gppnetwork.org:80
+          s_nssai:
+            sst: 1
+            # sd: 1
+        # - uri: http://nrf.5gc.mnc070.mcc999.3gppnetwork.org:80
+        #   s_nssai:
+        #     sst: 1
+        #     sd: 2
+        # - uri: http://nrf.5gc.mnc070.mcc999.3gppnetwork.org:80
+        #   s_nssai:
+        #     sst: 1
+        #     sd: 3

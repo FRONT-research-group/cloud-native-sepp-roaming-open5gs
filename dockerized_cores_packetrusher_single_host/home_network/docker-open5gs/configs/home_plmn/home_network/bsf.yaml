@@ -1,0 +1,14 @@
+logger:
+  file:
+    path: /var/log/open5gs/bsf.log
+  level: debug
+global:
+#home bsf not used in roaming LBO scenario
+bsf:
+  sbi:
+    server:
+      - address: bsf.5gc.mnc001.mcc001.3gppnetwork.org
+        port: 80
+    client:
+      nrf:
+        - uri: http://nrf.5gc.mnc001.mcc001.3gppnetwork.org:80

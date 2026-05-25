@@ -1,0 +1,15 @@
+logger:
+  file:
+    path: /var/log/open5gs/nrf.log
+  level: debug
+global:
+
+nrf:
+  serving: #5G roaming requires PLMN network advertising
+    - plmn_id:
+        mcc: 001
+        mnc: 01
+  sbi:
+    server:
+      - address: nrf.5gc.mnc001.mcc001.3gppnetwork.org
+        port: 80

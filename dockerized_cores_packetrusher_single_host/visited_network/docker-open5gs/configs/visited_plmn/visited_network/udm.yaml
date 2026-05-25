@@ -1,0 +1,14 @@
+logger:
+  file:
+    path: /var/log/open5gs/udm.log
+  level: debug
+global:
+
+udm:
+  sbi:
+    server:
+      - address: udm.5gc.mnc070.mcc999.3gppnetwork.org
+        port: 80
+    client:
+      nrf:
+        - uri: http://nrf.5gc.mnc070.mcc999.3gppnetwork.org:80

@@ -1,0 +1,20 @@
+db_uri: mongodb://db.5gc.mnc001.mcc001.3gppnetwork.org/open5gs
+
+logger:
+  file:
+    path: /var/log/open5gs/pcf.log
+  level: debug
+global:
+#home pcf not used for LBO roaming scenario
+pcf:
+  sbi:
+    server:
+      - address: pcf.5gc.mnc001.mcc001.3gppnetwork.org
+        port: 80
+    client:
+      nrf:
+        - uri: http://nrf.5gc.mnc001.mcc001.3gppnetwork.org:80
+  metrics:
+    server:
+      - address: pcf.5gc.mnc001.mcc001.3gppnetwork.org
+        port: 9090

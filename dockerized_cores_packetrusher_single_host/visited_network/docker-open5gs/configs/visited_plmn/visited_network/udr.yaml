@@ -1,0 +1,16 @@
+db_uri: mongodb://db.5gc.mnc070.mcc999.3gppnetwork.org/open5gs
+
+logger:
+  file:
+    path: /var/log/open5gs/udr.log
+
+global:
+
+udr:
+  sbi:
+    server:
+      - address: udr.5gc.mnc070.mcc999.3gppnetwork.org
+        port: 80
+    client:
+      nrf:
+        - uri: http://nrf.5gc.mnc070.mcc999.3gppnetwork.org:80
