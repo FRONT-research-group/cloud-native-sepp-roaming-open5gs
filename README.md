@@ -103,7 +103,7 @@ This is the first important Compose detail. The interconnect network is not owne
 
 ## 5. Conceptual Architecture
 
-![alt text](blob:https://markdownviewer.pages.dev/9faf4c32-45e6-4b68-909e-f084d60a7948)
+![Full_flow_roaming_picture](https://github.com/FRONT-research-group/cloud-native-sepp-roaming-open5gs/blob/main/images/Full_flow_roaming.png)
 
 ---
 
@@ -153,7 +153,7 @@ The important learning objective is not to reproduce a full operator IPX/SCP/SEP
 
 ## 8. Roaming Authentication Flow
 
-![alt text](blob:https://markdownviewer.pages.dev/517db73d-d924-4303-98b5-976a009d3b38)
+![Roaming_Authentication_flow_picture](https://github.com/FRONT-research-group/cloud-native-sepp-roaming-open5gs/blob/main/images/Roaming_Authentication_flow.png)
 
 The Home PLMN owns the subscriber. Therefore:
 
