@@ -71,7 +71,7 @@ The UE attaches through the Visited PLMN:
 ```text
 Serving PLMN = 999/70
 ```
-This is crucial, so that the visited AMF treats the UE as a roaming subscriber due to UE's identity refers to the Home PLMN.
+This is crucial, so that the visited AMF treats the UE as a roaming subscriber due to UE's identity that refers to the Home PLMN.
 
 ---
 
@@ -89,7 +89,7 @@ The key design rule is simple:
 
 All other NFs remain isolated inside their own PLMN network.
 
-In both Docker Compose projects, the interconnect is referenced as an external network:
+In both of the two Docker Compose projects, the interconnect network is referenced as an external network:
 
 ```yaml
 networks:
@@ -97,14 +97,14 @@ networks:
     external: true
 ```
 
-This is the first important Compose detail. The interconnect network is not owned by either the Home or Visited Compose project. It is a shared Docker bridge used only for SEPP-to-SEPP communication.
+This is the first important architectural detail. The interconnect network is not owned by either the Home or Visited Compose project. It is a shared Docker bridge used only for SEPP-to-SEPP communication.
 
 ---
 
 ## 5. Conceptual Architecture
 
-![alt text](blob:https://markdownviewer.pages.dev/9faf4c32-45e6-4b68-909e-f084d60a7948)
-
+![Full_flow_roaming_picture](https://github.com/FRONT-research-group/cloud-native-sepp-roaming-open5gs/blob/main/images/Full_flow_roaming.png)
+<center> Figure 1: Full diagram flow about 5G roaming scenario</center>
 ---
 
 ## 6. SEPP as the Roaming Boundary
@@ -153,7 +153,8 @@ The important learning objective is not to reproduce a full operator IPX/SCP/SEP
 
 ## 8. Roaming Authentication Flow
 
-![alt text](blob:https://markdownviewer.pages.dev/517db73d-d924-4303-98b5-976a009d3b38)
+![Roaming_Authentication_flow_picture](https://github.com/FRONT-research-group/cloud-native-sepp-roaming-open5gs/blob/main/images/Roaming_Authentication_flow.png)
+<center> Figure 2: Roaming Authentication flow diagram</center>
 
 The Home PLMN owns the subscriber. Therefore:
 
@@ -163,7 +164,7 @@ h-AUSF -> h-UDM -> h-UDR
 
 is the subscriber authentication path.
 
-The Visited PLMN does not authenticate the UE as a local subscriber. It routes the authentication request to the Home PLMN through SEPP.
+The Visited PLMN does not authenticate the UE as a local subscriber. It routes the authentication request to the Home PLMN through SEPP, so the UE should be registered in the home's Open5GS database.
 
 ---
 
@@ -190,12 +191,12 @@ The UE PDU session pool is:
 10.45.0.0/16
 ```
 
-This is not a Docker subnet. It is the UE address pool assigned by the SMF/UPF side.
+This is not a docker subnet. It is the UE address pool assigned by the SMF/UPF side.
 
 ---
 
 ## 10. How the Configuration Maps to the Theory
-This repository is organized so each theoretical concept maps to a concrete file.
+This repository is organized so each theoretical concept maps to a concrete file. Under `dockerized_cores_packetrusher_single_host` directory we have:
 
 | Concept | Configuration file | What to look for |
 |---|---|---|
@@ -215,36 +216,42 @@ This repository is organized so each theoretical concept maps to a concrete file
 ## 11. Repository Layout
 
 ```text
-open5gs-sepp-roaming-single-vm/
+cloud-native-sepp-roaming-open5gs/
 ├── README.md
-├── medium-article.md
-├── diagrams/
-│   ├── high-level-architecture.mmd
-│   |__ sepp-roaming-flow.mmd
-├── home_network/
-│   ├── docker-compose.yaml
-│   ├── .env.example
-│   ├── configs/
-│   │   ├── nrf.yaml
-│   │   ├── ausf.yaml
-│   │   ├── udm.yaml
-│   │   ├── udr.yaml
-│   │   └── sepp.yaml
-│   └── docker-open5gs/
-├── visited_network/
-│   ├── docker-compose.yaml
-│   ├── .env.example
-│   ├── configs/
-│   │   ├── nrf.yaml
-│   │   ├── amf.yaml
-│   │   ├── smf.yaml
-│   │   ├── upf.yaml
-│   │   ├── pcf.yaml
-│   │   └── sepp.yaml
-│   └── docker-open5gs/
-├── packetrusher/
-│   ├── config.example.yaml
-│   └── README.md
+├── LICENSE
+├── documentation/
+├── images/
+|
+└── dockerized_cores_packetrusher_single_host/
+    ├── home_network/
+    │   └── docker-open5gs/
+    │       ├── compose-files/
+    │       ├── configs/
+    │       ├── docs/
+    │       ├── helm/
+    │       ├── images/
+    │       ├── misc/
+    │       ├── .env
+    │       ├── .gitignore
+    │       ├── LICENSE
+    │       ├── Makefile
+    │       ├── README.md
+    │       └── docker-bake.hcl
+    ├── visited_network/
+    │   └── docker-open5gs/
+    │       ├── compose-files/
+    │       ├── configs/
+    │       ├── docs/
+    │       ├── helm/
+    │       ├── images/
+    │       ├── misc/
+    │       ├── .env
+    │       ├── .gitignore
+    │       ├── LICENSE
+    │       ├── Makefile
+    │       ├── README.md
+    │       └── docker-bake.hcl
+    └── successful_packet_rusher_config.yaml
 ```
 ---
 
