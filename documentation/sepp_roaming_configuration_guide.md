@@ -15,7 +15,7 @@ This is not meant to be a production roaming architecture. It is a clean lab imp
 
 The full Docker Compose files and Open5GS YAML configs are better kept in a GitHub repository. In this article, I only show the critical pieces that explain the design.
 
-> GitHub repository: `https://github.com/panos-ece/sepp-roaming/tree/main/dockerized_cores_packetrusher_single_host`
+> GitHub repository: [cloud-native-sepp-roaming-open5gs](https://github.com/FRONT-research-group/cloud-native-sepp-roaming-open5gs/tree/main)
 
 ---
 
@@ -24,6 +24,8 @@ The full Docker Compose files and Open5GS YAML configs are better kept in a GitH
 This demonstation has been built on top of [docker-open5gs](https://github.com/Borjis131/docker-open5gs) repo, so any interested user should follow the instructions in that repo to build the docker images and the containerized open5gs in general.
 
 In that repo, there is a `.env` file in the parent path of the repo with `DOCKER_HOST_IP` variable, which is the VM's IP.
+
+Furthermore, this repo uses [PacketRusher](https://github.com/HewlettPackard/PacketRusher) UE/gNB simulator towards Open5GS for the SEPP roaming scenario, so should be installed first together with the **gtp5g** kernel module that is required from PacketRusher. More info about that, you can find [here](https://github.com/HewlettPackard/PacketRusher/tree/main/lib/gtp5g).
 
 ---
 
@@ -66,7 +68,8 @@ networks:
     external: true
 ```
 
-This is the first important Compose detail. The interconnect network is not owned by either the Home or Visited Compose project. It is a shared Docker bridge used only for SEPP-to-SEPP communication.
+This is the first important design detail. The interconnect network is not owned by either the Home or Visited docker compose project. It is a shared docker bridge network used only for SEPP-to-SEPP communication.
+
 ---
 
 ## 4. Conceptual Architecture
@@ -82,7 +85,7 @@ For the **LBO roaming case**, the decisive functions are:
 | Home | `h-nrf`, `h-ausf`, `h-udm`, `h-udr`, `h-sepp` |
 | Visited | `v-nrf`, `v-amf`, `v-smf`, `v-upf`, `v-pcf`, `v-sepp` |
 
-The Compose files can still contain a more complete set of NFs. That is useful for a full lab, but the roaming path above is the important part.
+The docker compose files can still contain a more complete set of NFs. That is useful for a full lab, but we can focus in the above roaming path for our use case.
 
 ---
 
@@ -115,13 +118,13 @@ This split is important because it prevents peer SEPP traffic from landing on th
 
 ---
 
-## 6. Docker Compose Excerpts: Only SEPP Is Dual-Homed
-
+## 6. Docker Compose Configurations: SEPP case
+The key design decision around the docker compose files is the following:
 The full Docker Compose files are available in the GitHub repository. In the article, I only show the SEPP-related part because this is the key design decision:
 
-> all NFs stay inside their own PLMN Docker network, while only the two SEPPs are dual-homed into the interconnect network.
+> All NFs stay inside their own PLMN docker network, while only the two SEPPs can commnicate with each other and their 5G network.
 
-### Home SEPP Compose Excerpt
+### Home SEPP Docker Compose Configuration
 
 ```yaml
 h-sepp:
@@ -156,16 +159,16 @@ The Home SEPP is attached to two networks:
 | Network | Purpose |
 |---|---|
 | `o5gs_h_net` | Local Home PLMN SBI traffic |
-| `o5gs_interconnect_net` | SEPP-to-SEPP N32 traffic |
+| `o5gs_interconnect_net` | SEPP-to-SEPP n32 traffic |
 
-The important point is that `h-sepp` resolves the peer visited SEPP N32 FQDN to the visited SEPP interconnect IP:
+The important point is that `h-sepp` resolves the peer visited SEPP n32 FQDN to the visited SEPP interconnect IP:
 
 ```yaml
 extra_hosts:
   - "sepp-n32.5gc.mnc070.mcc999.3gppnetwork.org:10.10.30.3"
 ```
 
-### Visited SEPP Compose Excerpt
+### Visited SEPP Docker Compose Configuration
 
 ```yaml
 v-sepp:
@@ -200,9 +203,9 @@ The Visited SEPP follows the same pattern:
 | Network | Purpose |
 |---|---|
 | `o5gs_v_net` | Local Visited PLMN SBI traffic |
-| `o5gs_interconnect_net` | SEPP-to-SEPP N32 traffic |
+| `o5gs_interconnect_net` | SEPP-to-SEPP n32 traffic |
 
-The visited side maps the Home SEPP N32 FQDN to the Home SEPP interconnect IP:
+The visited side maps the Home SEPP n32 FQDN to the Home SEPP interconnect IP:
 
 ```yaml
 extra_hosts:
@@ -210,7 +213,7 @@ extra_hosts:
 ```
 ---
 
-## 7. SEPP Configuration Excerpts
+## 7. SEPP Docker Config Files
 
 The SEPP YAML files must also bind the local SBI side and the N32 side separately.
 
@@ -398,8 +401,8 @@ gnodeb:
 
 ue:
   msin: "0000000120"
-  key: "<same-as-home-subscriber-K>"
-  opc: "<same-as-home-subscriber-OPc>"
+  key: "<same-as-home-subscriber-K-in-home-open5gs-db>"
+  opc: "<same-as-home-subscriber-OPc-in-home-open5gs-db>"
   amf: "8000"
   sqn: "0000000"
   dnn: "internet"
@@ -425,8 +428,6 @@ amfif:
 ```
 
 The exact key, OPc and subscriber data must match the subscriber provisioned in the **Home** database.
-
-A MAC failure during authentication usually means the PacketRusher UE credentials do not match the Home subscriber record.
 
 ---
 
