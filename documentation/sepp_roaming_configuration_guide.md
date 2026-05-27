@@ -460,9 +460,28 @@ docker exec -it h-sepp getent hosts sepp-n32.5gc.mnc070.mcc999.3gppnetwork.org
 docker exec -it v-sepp getent hosts sepp-n32.5gc.mnc001.mcc001.3gppnetwork.org
 ```
 
+## 14. Home and Visited SEPP establishment verification
+
+Below, we can see how the sepp establishment can be seen from the respective SEPP NF containers.
+
+![Home SEPP verification picture](https://github.com/FRONT-research-group/cloud-native-sepp-roaming-open5gs/blob/main/images/sepp_established_h_net_logs.PNG)
+<center> Figure 3: Home SEPP verification</center>
+
+
+![Visited SEPP verification picture](https://github.com/FRONT-research-group/cloud-native-sepp-roaming-open5gs/blob/main/images/sepp_established_v_net_logs.PNG)
+<center> Figure 4: Visited SEPP verification</center>
 ---
 
-## 13. Data Plane and LBO Verification
+## 15. PacketRusher deployment verification
+
+![PacketRusher gnb connection picture](https://github.com/FRONT-research-group/cloud-native-sepp-roaming-open5gs/blob/main/images/packetrusher_capture_part1_gnb_connection.PNG)
+<center> Figure 5: PacketRusher gNB connection verification part1</center>
+
+
+![PacketRusher gnb ue connection picture](https://github.com/FRONT-research-group/cloud-native-sepp-roaming-open5gs/blob/main/images/packetrusher_capture_part2_gnb_ue_connection.PNG)
+<center> Figure 6: PacketRusher gNB - UE connection verification part2</center>
+
+## 16. Data Plane and LBO Verification
 
 The UE session subnet is:
 
@@ -477,12 +496,18 @@ val0000000120
 vrf0000000120
 ```
 
+![PacketRusher pdu session establishment picture](https://github.com/FRONT-research-group/cloud-native-sepp-roaming-open5gs/blob/main/images/pdu_session_created_ue_vrf_interface.PNG)
+<center> Figure 7: PDU session establishment and VRF interface</center>
+
 Test UE traffic:
 
 ```bash
 sudo ip vrf exec vrf0000000120 bash
 ping 8.8.8.8
 ```
+
+![Ping output picture from UE's vrf interface](https://github.com/FRONT-research-group/cloud-native-sepp-roaming-open5gs/blob/main/images/ping_from_ue.PNG)
+<center> Figure 8: Ping output from UE's vrf interface</center>
 
 Try the following command for a traceroute output from UE to 8.8.8.8:
 
@@ -492,9 +517,12 @@ mtr -a 10.45.0.X 8.8.8.8
 ```
 The result should be traffic flow from UE's VRF interface and IP 10.4.5.0.1 towards the internet.
 
+![Traceroute output picture from UE's vrf interface](https://github.com/FRONT-research-group/cloud-native-sepp-roaming-open5gs/blob/main/images/traceroute_from_ue.PNG)
+<center> Figure 9: Traceroute output from UE's vrf interface</center>
+
 ---
 
-## 14. Repository Layout
+## 17. Repository Layout
 
 ```text
 cloud-native-sepp-roaming-open5gs/
@@ -535,7 +563,7 @@ cloud-native-sepp-roaming-open5gs/
 ```
 ---
 
-## 15. Troubleshooting by Concept
+## 18. Troubleshooting by Concept
 
 | Symptom | Conceptual meaning | Where to check |
 |---|---|---|
@@ -549,7 +577,7 @@ cloud-native-sepp-roaming-open5gs/
 
 ---
 
-## 16. References
+## 19. References
 
 - Open5GS roaming tutorial: <https://open5gs.org/open5gs/docs/tutorial/05-roaming/>
 - PacketRusher: <https://github.com/HewlettPackard/PacketRusher>
