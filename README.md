@@ -289,7 +289,11 @@ The purpose is to isolate the most important roaming concepts in a reproducible 
 
 ---
 
-## 14. References
+## 14. Contact
+
+For questions or support, contact: p.pavlidis@iit.demokritos.gr | panpavlidis98@gmail.com
+
+## 15. References
 
 - Open5GS roaming tutorial: <https://open5gs.org/open5gs/docs/tutorial/05-roaming/>
 - PacketRusher: <https://github.com/HewlettPackard/PacketRusher>

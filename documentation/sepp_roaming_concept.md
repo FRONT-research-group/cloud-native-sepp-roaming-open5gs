@@ -221,7 +221,6 @@ cloud-native-sepp-roaming-open5gs/
 ├── LICENSE
 ├── documentation/
 ├── images/
-|
 └── dockerized_cores_packetrusher_single_host/
     ├── home_network/
     │   └── docker-open5gs/
@@ -255,7 +254,7 @@ cloud-native-sepp-roaming-open5gs/
 ```
 ---
 
-## 14. Expected Successful Behavior
+## 12. Expected Successful Behavior
 
 When the lab is working, the expected behavior is:
 
@@ -272,20 +271,7 @@ When the lab is working, the expected behavior is:
 
 ---
 
-## 15. Troubleshooting by Concept
-
-| Symptom | Conceptual meaning | Where to check |
-|---|---|---|
-| UE authenticates against Visited AUSF | UE is being treated as local, not roaming | PacketRusher `ue.hplmn` |
-| MAC failure | UE credentials do not match Home subscriber | Home subscriber DB, PacketRusher K/OPc/SQN |
-| SEPP wrong interface error | Peer traffic reached the SBI side | SEPP FQDNs, Docker aliases, `n32.server.address` |
-| SEPP peer FQDN resolves but curl fails | SEPP is not listening on the target interface | `ss -ntlp` inside SEPP |
-| Registration works but ping fails | Control plane works, user plane does not | `v-UPF`, `ogstun`, NAT, `gtp5g`, routes |
-| PDU session fails | Session policy or UPF selection issue | `v-PCF`, `v-SMF`, `v-UPF` |
-
----
-
-## 16. Scope and Limitations
+## 13. Scope and Limitations
 
 This repository is an educational lab, not a production roaming deployment.
 
@@ -303,9 +289,14 @@ The purpose is to isolate the most important roaming concepts in a reproducible 
 
 ---
 
-## 18. References
+## 14. Contact
+
+For questions or support, contact: p.pavlidis@iit.demokritos.gr | panpavlidis98@gmail.com
+
+## 15. References
 
 - Open5GS roaming tutorial: <https://open5gs.org/open5gs/docs/tutorial/05-roaming/>
+- PacketRusher: <https://github.com/HewlettPackard/PacketRusher>
 - Borijs131 - docker_open5gs: <https://github.com/Borjis131/docker-open5gs>
 - 5G ROAMING (Open5GS, Packet Rusher): <https://medium.com/@vidime.sa.buduci.rok/5g-roaming-open5gs-packet-rusher-dacb34f3497c>
 

@@ -577,7 +577,10 @@ cloud-native-sepp-roaming-open5gs/
 
 ---
 
-## 19. References
+## 19. Contact
+For questions or support, contact: panpavlidis98@gmail.com
+
+## 20. References
 
 - Open5GS roaming tutorial: <https://open5gs.org/open5gs/docs/tutorial/05-roaming/>
 - PacketRusher: <https://github.com/HewlettPackard/PacketRusher>
