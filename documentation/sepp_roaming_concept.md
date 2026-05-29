@@ -103,8 +103,14 @@ This is the first important architectural detail. The interconnect network is no
 
 ## 5. Conceptual Architecture
 
-![Full_flow_roaming_picture](https://github.com/FRONT-research-group/cloud-native-sepp-roaming-open5gs/blob/main/images/Full_flow_roaming.png)
-<center> Figure 1: Full diagram flow about 5G roaming scenario</center>
+<p align="center">
+  <img src="./images/Full_flow_roaming.png" alt="Full roaming flow">
+</p>
+
+<p align="center">
+  <em>Figure 1: Full diagram flow about 5G roaming scenario</em>
+</p>
+
 ---
 
 ## 6. SEPP as the Roaming Boundary
@@ -153,8 +159,13 @@ The important learning objective is not to reproduce a full operator IPX/SCP/SEP
 
 ## 8. Roaming Authentication Flow
 
-![Roaming_Authentication_flow_picture](https://github.com/FRONT-research-group/cloud-native-sepp-roaming-open5gs/blob/main/images/Roaming_Authentication_flow.png)
-<center> Figure 2: Roaming Authentication flow diagram</center>
+<p align="center">
+  <img src="./images/Roaming_Authentication_flow.png" alt="Roaming authentication flow">
+</p>
+
+<p align="center">
+  <em>Figure 2: Roaming Authentication flow diagram</em>
+</p>
 
 The Home PLMN owns the subscriber. Therefore:
 
