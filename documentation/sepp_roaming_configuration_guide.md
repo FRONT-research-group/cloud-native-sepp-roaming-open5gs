@@ -76,7 +76,7 @@ This is the first important design detail. The interconnect network is not owned
 
 
 <p align="center">
-  <img src="./images/Full_flow_roaming.png" alt="Full roaming flow">
+  <img src="../images/Full_flow_roaming.png" alt="Full roaming flow">
 </p>
 
 <p align="center">
@@ -276,7 +276,7 @@ The key line is the `n32.server.address`. Without it, the SEPP process may not l
 ## 8. Roaming Authentication Flow
 
 <p align="center">
-  <img src="./images/Roaming_Authentication_flow.png" alt="Roaming_Authentication_flow_picture">
+  <img src="../images/Roaming_Authentication_flow.png" alt="Roaming_Authentication_flow_picture">
 </p>
 
 <p align="center">
@@ -477,7 +477,7 @@ Below, we can see how the sepp establishment can be seen from the respective SEP
 
 
 <p align="center">
-  <img src="./images/sepp_established_h_net_logs.PNG" alt="Home SEPP verification picture">
+  <img src="../images/sepp_established_h_net_logs.PNG" alt="Home SEPP verification picture">
 </p>
 
 <p align="center">
@@ -485,7 +485,7 @@ Below, we can see how the sepp establishment can be seen from the respective SEP
 </p>
 
 <p align="center">
-  <img src="./images/sepp_established_v_net_logs.PNG" alt="Visited SEPP verification picture">
+  <img src="../images/sepp_established_v_net_logs.PNG" alt="Visited SEPP verification picture">
 </p>
 
 <p align="center">
@@ -496,7 +496,7 @@ Below, we can see how the sepp establishment can be seen from the respective SEP
 ## 15. PacketRusher deployment verification
 
 <p align="center">
-  <img src="./images/packetrusher_capture_part1_gnb_connection.PNG" alt="PacketRusher gnb connection picture">
+  <img src="../images/packetrusher_capture_part1_gnb_connection.PNG" alt="PacketRusher gnb connection picture">
 </p>
 
 <p align="center">
@@ -504,7 +504,7 @@ Below, we can see how the sepp establishment can be seen from the respective SEP
 </p>
 
 <p align="center">
-  <img src="./images/packetrusher_capture_part2_gnb_ue_connection.PNG" alt="PacketRusher gnb ue connection picture">
+  <img src="../images/packetrusher_capture_part2_gnb_ue_connection.PNG" alt="PacketRusher gnb ue connection picture">
 </p>
 
 <p align="center">
@@ -528,7 +528,7 @@ vrf0000000120
 ```
 
 <p align="center">
-  <img src="./images/pdu_session_created_ue_vrf_interface.PNG" alt="PacketRusher pdu session establishment picture">
+  <img src="../images/pdu_session_created_ue_vrf_interface.PNG" alt="PacketRusher pdu session establishment picture">
 </p>
 
 <p align="center">
@@ -543,7 +543,7 @@ ping 8.8.8.8
 ```
 
 <p align="center">
-  <img src="./images/ping_from_ue.PNG" alt="Ping output picture from UE's vrf interface">
+  <img src="../images/ping_from_ue.PNG" alt="Ping output picture from UE's vrf interface">
 </p>
 
 <p align="center">
@@ -559,7 +559,7 @@ mtr -a 10.45.0.X 8.8.8.8
 The result should be traffic flow from UE's VRF interface and IP 10.4.5.0.1 towards the internet.
 
 <p align="center">
-  <img src="./images/traceroute_from_ue.PNG" alt="Traceroute output picture from UE's vrf interface">
+  <img src="../images/traceroute_from_ue.PNG" alt="Traceroute output picture from UE's vrf interface">
 </p>
 
 <p align="center">
